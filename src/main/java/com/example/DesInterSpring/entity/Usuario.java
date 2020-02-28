@@ -33,14 +33,25 @@ public class Usuario {
     @ManyToMany
 	private Set<Rol> roles = new HashSet<>();
 	
+	public boolean admin;
+	
 	public Usuario(String nombre, String email, String password, String foto, Set<Rol> roles) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
         this.foto = foto;
         this.roles = roles;
+        this.admin=true;
     }
 	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
 	public Usuario(){}
 	
 	public Long getId() {

@@ -73,8 +73,6 @@ public class UsuarioController {
             return new ResponseEntity(new Mensaje("no existe ese usuario"), HttpStatus.NOT_FOUND);
         if(StringUtils.isBlank(usuario.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(StringUtils.isBlank(usuario.getPassword()))
-            return new ResponseEntity(new Mensaje("La contraseña es obligatoria"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(usuario.getEmail()))
             return new ResponseEntity(new Mensaje("el email es obligatorio"), HttpStatus.BAD_REQUEST);
         if(usuarioService.existePorEmail(usuario.getEmail()) &&
@@ -82,7 +80,11 @@ public class UsuarioController {
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
         Usuario usuarioUpdate = usuarioService.obtenerPorId(id).get();
         usuarioUpdate.setNombre(usuario.getNombre());
+        if(usuario.getPassword()=="") {
+        	
+        }else {
         usuarioUpdate.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        }
         usuarioUpdate.setEmail(usuario.getEmail());
         usuarioService.guardar(usuarioUpdate);
         return new ResponseEntity(new Mensaje("usuario actualizado"), HttpStatus.CREATED);

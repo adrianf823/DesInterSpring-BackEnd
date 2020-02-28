@@ -28,7 +28,17 @@ public class NuevoUsuario {
 
     private Set<String> roles;
 
-    public String getNombre() {
+    public boolean admin;
+    
+    public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public String getNombre() {
         return nombre;
     }
 
