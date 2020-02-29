@@ -28,6 +28,16 @@ public class Usuario {
 	public String password;
 	
 	public String foto;
+	
+	public String fotocomp;
+
+	public String getFotocomp() {
+		return fotocomp;
+	}
+
+	public void setFotocomp(String fotocomp) {
+		this.fotocomp = fotocomp;
+	}
 
 	@NotNull
     @ManyToMany
@@ -35,11 +45,12 @@ public class Usuario {
 	
 	public boolean admin;
 	
-	public Usuario(String nombre, String email, String password, String foto, Set<Rol> roles) {
+	public Usuario(String nombre, String email, String password, String foto,String fotocomp, Set<Rol> roles) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
         this.foto = foto;
+        this.fotocomp = fotocomp;
         this.roles = roles;
         this.admin=true;
     }

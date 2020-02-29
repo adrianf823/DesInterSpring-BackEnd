@@ -14,12 +14,16 @@ public class UsuarioPrincipal implements UserDetails {
     private String nombre;
     private String email;
     private String password;
+    private String foto;
+    private String fotocomp;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UsuarioPrincipal(Long id, String nombre, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(Long id, String nombre, String email,String foto,String fotocomp, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
+        this.foto = foto;
+        this.fotocomp = fotocomp;
         this.password = password;
         this.authorities = authorities;
     }
@@ -27,7 +31,7 @@ public class UsuarioPrincipal implements UserDetails {
     public static UsuarioPrincipal build(Usuario usuario){
         List<GrantedAuthority> authorities =
                 usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors.toList());
-        return new UsuarioPrincipal(usuario.getId(), usuario.getNombre(), usuario.getEmail(), usuario.getPassword(), authorities);
+        return new UsuarioPrincipal(usuario.getId(), usuario.getNombre(), usuario.getEmail(),usuario.getFoto(),usuario.getFotocomp(), usuario.getPassword(), authorities);
     }
 
     public Long getId() {
@@ -44,7 +48,23 @@ public class UsuarioPrincipal implements UserDetails {
         return authorities;
     }
 
-    @Override
+    public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getFotocomp() {
+		return fotocomp;
+	}
+
+	public void setFotocomp(String fotocomp) {
+		this.fotocomp = fotocomp;
+	}
+
+	@Override
     public String getPassword() {
         return password;
     }

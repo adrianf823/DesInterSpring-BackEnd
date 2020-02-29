@@ -74,7 +74,7 @@ public class AuthController {
         }
         Usuario usuario =
                 new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getEmail(),
-                        passwordEncoder.encode(nuevoUsuario.getPassword()),nuevoUsuario.getFoto(), roles);
+                        passwordEncoder.encode(nuevoUsuario.getPassword()),nuevoUsuario.getFoto(),nuevoUsuario.getFotocomp(), roles);
         usuario.setRoles(roles);
         usuarioService.guardar(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);

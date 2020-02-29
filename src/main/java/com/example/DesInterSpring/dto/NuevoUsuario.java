@@ -15,7 +15,17 @@ public class NuevoUsuario {
     @NotBlank
     private String foto;
     
-    public String getFoto() {
+    private String fotocomp;
+    
+    public String getFotocomp() {
+		return fotocomp;
+	}
+
+	public void setFotocomp(String fotocomp) {
+		this.fotocomp = fotocomp;
+	}
+
+	public String getFoto() {
 		return foto;
 	}
 

@@ -80,12 +80,14 @@ public class UsuarioController {
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
         Usuario usuarioUpdate = usuarioService.obtenerPorId(id).get();
         usuarioUpdate.setNombre(usuario.getNombre());
-        if(usuario.getPassword()=="") {
+        if(usuario.getPassword()=="" || usuario.getPassword()==null) {
         	
         }else {
         usuarioUpdate.setPassword(passwordEncoder.encode(usuario.getPassword()));
         }
         usuarioUpdate.setEmail(usuario.getEmail());
+        usuarioUpdate.setFoto(usuario.getFoto());
+        usuarioUpdate.setFotocomp(usuario.getFotocomp());
         usuarioService.guardar(usuarioUpdate);
         return new ResponseEntity(new Mensaje("usuario actualizado"), HttpStatus.CREATED);
     }
